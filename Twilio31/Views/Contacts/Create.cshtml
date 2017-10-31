@@ -1,7 +1,12 @@
 ﻿@model Twilio31.Models.Contact
 
+<h3>Fill in the form below to create a new contact</h3>
 
-@using (Html.BeginForm())
+<br>
+<br>
+
+@using (Html.BeginForm("Create", "Contacts",  
+            FormMethod.Post, new { @class="create-contact-form" }))
 {
 
     @Html.DisplayNameFor(model => model.Name)
@@ -9,6 +14,13 @@
     @Html.DisplayNameFor(model => model.Number)
     @Html.EditorFor(model => model.Number)
 
-    <input type="submit" value="Create" />
+    <input type="submit" />
 
 }
+
+<br>
+<br>
+
+
+
+<h5 id="val-output"></h5>

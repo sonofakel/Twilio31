@@ -2,12 +2,31 @@
 
 <h1>Address Book</h1>
 
+@Html.ActionLink("Create new contact", "Create")
+
+<br>
+<br>
+
 @foreach(var contact in Model)
 {
-    <div class="well contact-well">
+    <div class="well">
         <p>Name: @contact.Name</p>
         <p>Number: <span class="contact-number">@contact.Number</span></p>
 
+	@using (Html.BeginForm("SendMessage","Contacts",FormMethod.Post, new { @class="create-message-form" }))
+{
+   
+    <input type="hidden" value="+13605259201" name="formNum">
+    <label for="body">Body:</label>
+    <input type="text" name="formNum">
+    <input type="hidden" value="@contact.Number" name="formNum">
+
+    <div id="output"></div>
+
+    <input type="submit" value="Send!" />
+}
+
+	<button class="show-messages">View Messages</button>
 	
 	</div>
     

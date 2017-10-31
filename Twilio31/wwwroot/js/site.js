@@ -7,9 +7,8 @@
 
     });
 
-    $('.contact-well').click(function(e) {
-        e.preventDefault();
-        var number = $(this).find('.contact-number').text();
+    $('.show-messages').click(function() {
+        var number = $(this).siblings().children('.contact-number').text();
         console.log(number);
         $.ajax({
             type: 'GET',
@@ -20,4 +19,20 @@
             }
         });
     });
+
+    $('.create-contact-form').submit(function(e) {
+    console.log("TEST");
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            url: '/Contacts/Create',
+            success: function(result) {
+            var validation = `New contact confirmation code is ` + result;
+            $('#val-output').html(validation)
+            }
+        });
+    });
+
 });

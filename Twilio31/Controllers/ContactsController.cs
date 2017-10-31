@@ -30,6 +30,7 @@ namespace Twilio31.Controllers
 		[HttpPost]
 		public IActionResult Create(Contact contact)
 		{
+            
 			const string accountSid = "ACbdad9a7a5b65ad655c501ef37ee0375f";
 			const string authToken = "ac924cd3e5aca5f62680c3f4f0e16721";
 			TwilioClient.Init(accountSid, authToken);
@@ -42,16 +43,33 @@ namespace Twilio31.Controllers
 			var myValidation = (validationRequest.ValidationCode);
 
 
-			Contact.ContactList.Add(contact);
-			return RedirectToAction("Validation", new { val = myValidation });
+			db.Add(contact);
+            db.SaveChanges();
+
+			return Json(myValidation);
 		}
 
-		public IActionResult Validation(int val)
+		[HttpPost]
+		public IActionResult SendMessage(string[] formNum)
 		{
 
-			ViewBag.ValNum = val;
-			return View();
+			var from = formNum[0];
+			var body = formNum[1];
+
+			for (int i = 2; i < formNum.Length; i++)
+			{
+				Message message = new Message();
+				message.From = from;
+				message.Body = body;
+				message.To = formNum[i];
+				message.Send();
+
+			}
+
+			return RedirectToAction("Index");
 		}
+
+      
 
         public PartialViewResult ContactMessagePartial(string number)
         {
