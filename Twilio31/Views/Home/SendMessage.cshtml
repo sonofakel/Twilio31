@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+<h2>Send a new message</h2>
+<hr />
+@using (Html.BeginForm())
+{
+   <button id="add-number">Add #</button>
+
+    <label for="from">From:</label>
+    <input type="text" name="formNum">
+    <label for="body">Body:</label>
+    <input type="text" name="formNum">
+    <label for="to">To:</label>
+    <input type="text" name="formNum">
+
+    <div id="output"></div>
+
+    <input type="submit" value="Send!" />
+}
+
+@Html.ActionLink("Back home", "Index")

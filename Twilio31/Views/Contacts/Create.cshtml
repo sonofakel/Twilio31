@@ -1,0 +1,14 @@
+﻿@model Twilio31.Models.Contact
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.DisplayNameFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+    @Html.DisplayNameFor(model => model.Number)
+    @Html.EditorFor(model => model.Number)
+
+    <input type="submit" value="Create" />
+
+}

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Twilio31.Models.Contact>
+
+<h1>Address Book</h1>
+
+@foreach(var contact in Model)
+{
+    <div class="well contact-well">
+        <p>Name: @contact.Name</p>
+        <p>Number: <span class="contact-number">@contact.Number</span></p>
+
+	
+	</div>
+    
+}
+
+<div class="panel output"></div>
+    
+
+<div>
+@Html.ActionLink("Go back home", "Index", "Home")
+</div>
